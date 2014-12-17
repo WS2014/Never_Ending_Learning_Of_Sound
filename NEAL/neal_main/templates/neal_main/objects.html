@@ -185,10 +185,10 @@
 		<ol start = "1">
 			{% for result in object_results %}
 			{% if result.object_name == selected_object %}			
-			<strong><u><li><a href = {% url 'neal_main:objects_selected' item.category %}> {{ result.object_name }} </a></li></u></strong>
+			<strong><u><li><a href = {% url 'neal_main:objects_selected' item.category|slugify %}> {{ result.object_name }} </a></li></u></strong>
 			<br />
 			{% else %}
-			<li><a href = {% url 'neal_main:category_objects_selected' item.category result.object_name %}> {{ result.object_name }} </a></li>
+			<li><a href = {% url 'neal_main:category_objects_selected' item.category|slugify result.object_name|slugify %}> {{ result.object_name }} </a></li>
 			<br />
 			{% endif %}
 			{% endfor %}	
@@ -196,7 +196,7 @@
 		<br />	
 		</div>
 		{% else %}
-		<li><a href = "{% url 'neal_main:objects_selected' item.category %}">{{ item.category }}</a>
+		<li><a href = "{% url 'neal_main:objects_selected' item.category|slugify %}">{{ item.category }}</a>
 		<br />
 		{% endif %}	
 	{% endfor %}
@@ -239,7 +239,7 @@
 	
 	<ul>	
 	{% for item in category_results %}
-	<li><a href = "{% url 'neal_main:objects_selected' item.category %}">{{ item.category }}</a>
+	<li><a href = "{% url 'neal_main:objects_selected' item.category|slugify %}">{{ item.category }}</a>
 	<br />
 	{% endfor %}
 	</ul>

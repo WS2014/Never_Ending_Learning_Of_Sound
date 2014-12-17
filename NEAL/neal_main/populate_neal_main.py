@@ -12,8 +12,27 @@ def populate():
 		with open("static/downloaded_files/downloaded_files.csv", "r") as userfile:
 			for line in userfile:
 				terms = line.split(",")
+				terms = line.split(",")
+				terms[0] = terms[0].lower()
+				objects = terms[0].split(" ")
+				object1 = objects[0]
+				#print objects				
+				for i in objects:
+					if (i!=object1):
+						object1 = object1 + "-" + i
+
+				print str(object1)
+	
+				terms[1] = terms[1].lower()
+				category = terms[1].split(" ")
+				category1 = category[0]
+				for i in category:
+					if (i!=category1):
+						category1 = category1 + "-" + i
+	
+				print str(category1)
 				#inserting data in the sqlite3 database
-				query = "INSERT INTO neal_main_neal_download_model values(NULL, '" + str(terms[0]) + "', '" + str(terms[1]) + "', '" + str(terms[2]) + "', '" + str(terms[3]) + "', '" + str(datetime.datetime.now()) + "');"
+				query = "INSERT INTO neal_main_neal_download_model values(NULL, '" + str(object1) + "', '" + str(category1) + "', '" + str(terms[2]) + "', '" + str(terms[3]) + "', '" + str(datetime.datetime.now()) + "');"
 				cur.execute(query)
 		userfile.close()
 		print "INSERTED"
