@@ -1,0 +1,36 @@
+#title .logo {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+#title .logo a {
+    color: #d0eb6a;
+}
+
+/* line 148, ../sass/screen.sass */
+#title .logo:hover {
+/*  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);*/
+  text-shadow: 0 0 20px #d0eb6a, 0 0 50px #d0eb6a;
+}
+
+#title .logo {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+#title .logo a {
+    color: #d0eb6a;
+}
+
+/* line 148, ../sass/screen.sass */
+#title .logo:hover {
+/*  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);*/
+  text-shadow: 0 0 20px #d0eb6a, 0 0 50px #d0eb6a;
+}
+

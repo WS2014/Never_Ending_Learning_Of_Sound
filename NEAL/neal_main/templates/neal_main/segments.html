@@ -1,0 +1,187 @@
+{% load staticfiles %}
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="{% static 'neal_main/css.css' %}" />
+
+<title>NEAL: Never Ending Audio Learning
+</title>
+
+</head>
+<body >
+<div id = "title">
+	<h1 class="logo">
+		<a href="" target = "_parent">
+		NEAL: Never Ending Audio Learner
+		</a>
+	</h1>
+
+<p class="institute">
+
+    I Crawl, I Hear, I Learn.
+
+</p>
+</font>
+</div>
+<div id="topmiddle" style="float: left; margin-top: 20px; margin-left: 30px;">
+<font color = "#cccccc">
+    <h3 style="width: 40px;">
+
+        Statistics:
+
+    </h3>
+    <table style="font-size: 0.8em; margin-left: 20px; line-height: 1.4;">
+        <tbody>
+            <tr>
+                <td style="text-align:right">
+
+                Concepts: 
+
+                </td>
+		<td style="text-align:right">
+
+                Audio Clips:   
+
+                </td>
+                
+            </tr>
+            <tr>
+                <td style="text-align:right">
+
+                Segmentations:    
+
+                </td>
+                <td style="text-align:right">
+
+                Audio Relationships: 
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</font>
+</div>
+<div id="topright">
+<font color = "#cccccc">
+<input id="category" value="Search Here"></input>
+<input class="button" type="submit" onclick="javascript: formSubmit()" value="Submit" name="SubmitT"></input>
+</font>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<!--
+<div class="left_content">
+<frameset framespacing="2" frameborder="no" cols="250,*">
+
+    <frame name="neal_category">
+    <html>
+	<ul>	
+<li>Objects<br /><br />
+<li>Scenes<br /><br />
+<li>Attributes<br /><br />
+<li>Train a Concept<br /><br />
+<li>Downloads<br /><br />
+<li>About<br /><br />
+	</bullet>
+	</html>
+    </frame>
+
+</frameset>
+</div>
+
+<div class="right_content">
+<frameset framespacing="2" frameborder="no" cols="250,*">
+
+    <frame name="neal_category">
+    <html>
+<table>
+    <tr>
+        <th>One</th>
+        
+        <th>Two</th>
+    </tr>
+    {% for item in query_results %}
+    <tr> 
+        <td>{{ item.one }}</td>
+        
+        <td>{{ item.two }}</td>
+    </tr>
+    {% endfor %}
+</table>
+	</html>
+    </frame>
+
+</frameset>
+</div>
+-->
+
+<div class="content">
+<frameset framespacing="2" frameborder="no" cols="250,*">
+
+    <frame name="neal_category">
+    <html>
+	<div class = "tab">
+	<h2><a href = "{% url 'neal_main:neal_index' %}">Home</a></h2>
+	</div>
+	<div class = "tab">
+	<h2><a href = "{% url 'neal_main:objects' %}">Objects</a></h2>
+	</div>
+	<div class = "tab">
+	<h2><a href = "{% url 'neal_main:segments' %}">Segments</a></h2>
+	</div>
+	<div class = "tab">
+	<h2><a href = "{% url 'neal_main:downloads' %}">Downloads</a></h2>
+	</div>
+	<div class = "tab">
+	<h2><a href = "{% url 'neal_main:about' %}">About</a></h2>
+	</div>
+	
+	<div style="float:left;">
+	<br />
+	<br />
+	<h3>Vision</h3>
+	<br />
+	Never Ending Sound Learner (NESL)  is a computer program that works 24/7 learning information about sounds that it finds on the internet.  
+	<br />
+	
+	<br />
+	<br />
+	Segments:<br />
+	<table cellpadding = "30px">
+    <tr>
+        <th>Object Name</th>
+        <th>Category</th>
+	<th>StartTime</th>
+	<th>EndTime</th>
+	<th>URL Source</th>
+        <th>URL_File_Source</th>
+	<th>Date Learnt</th>
+	<th>Confidence</th>
+    </tr>
+    {% for item in query_results %}
+    <tr> 
+        <td>{{ item.object_name }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.start_time }}</td>
+        <td>{{ item.end_time }}</td>
+        <td>{{ item.url }}</td>
+        <td>{{ item.url_audio_file }}</td>
+        <td>{{ item.date_learned }}</td>
+        <td>{{ item.confidence }}</td>
+        </tr>
+    {% endfor %}
+</table>
+	</div>	
+	
+</html>
+</frame>
+</frameset>
+</div>
+
+
+</body>
+</html>
