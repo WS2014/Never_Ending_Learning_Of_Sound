@@ -3,7 +3,7 @@ import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
 from models import *
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def populate():
 	object_name = 'Dog'
@@ -35,9 +35,24 @@ def objects(request):
 	#print 'data insert'
 	#os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NEAL.settings')
 	#populate()
+
+
+
 	query_results = NEAL_download_model.objects.all()
 	category_results = NEAL_download_model.objects.values('category').distinct()
-	return render(request, 'neal_main/objects.html', {'query_results': query_results,'selected_flag':selected_flag, 'category_results': category_results, 'selected_category': None, 'object_results': None, 'selected_object': None})
+
+	paginator = Paginator(query_results, 20) # Show 25 contacts per page
+	page = request.GET.get('page')
+    	try:
+        	query_paginated_results = paginator.page(page)
+    	except PageNotAnInteger:
+        	# If page is not an integer, deliver first page.
+        	query_paginated_results = paginator.page(1)
+    	except EmptyPage:
+        	# If page is out of range (e.g. 9999), deliver last page of results.
+        	query_paginated_results = paginator.page(paginator.num_pages)
+
+	return render(request, 'neal_main/objects.html', {'query_results': query_paginated_results,'selected_flag':selected_flag, 'category_results': category_results, 'selected_category': None, 'object_results': None, 'selected_object': None})
 
 def objects_selected(request, category):
 	template = 'neal_main/objects.html'
@@ -47,7 +62,20 @@ def objects_selected(request, category):
 	query_results = NEAL_download_model.objects.filter(category = category)
 	category_results = NEAL_download_model.objects.values('category').distinct()
 	object_results = NEAL_download_model.objects.filter(category = category).values('object_name').distinct()
-	return render(request, 'neal_main/objects.html', {'query_results': query_results,'selected_flag':selected_flag, 'category_results': category_results, 'selected_category': category, 'object_results': object_results, 'selected_object': None})
+
+	paginator = Paginator(query_results, 20) # Show 25 contacts per page
+	page = request.GET.get('page')
+    	try:
+        	query_paginated_results = paginator.page(page)
+    	except PageNotAnInteger:
+        	# If page is not an integer, deliver first page.
+        	query_paginated_results = paginator.page(1)
+    	except EmptyPage:
+        	# If page is out of range (e.g. 9999), deliver last page of results.
+        	query_paginated_results = paginator.page(paginator.num_pages)
+
+		
+	return render(request, 'neal_main/objects.html', {'query_results': query_paginated_results,'selected_flag':selected_flag, 'category_results': category_results, 'selected_category': category, 'object_results': object_results, 'selected_object': None})
 
 def category_objects_selected(request, category, object_name):
 	template = 'neal_main/objects.html'
@@ -57,7 +85,20 @@ def category_objects_selected(request, category, object_name):
 	query_results = NEAL_download_model.objects.filter(category = category).filter(object_name = object_name)
 	category_results = NEAL_download_model.objects.values('category').distinct()
 	object_results = NEAL_download_model.objects.filter(category = category).values('object_name').distinct()
-	return render(request, 'neal_main/objects.html', {'query_results': query_results,'selected_flag':selected_flag, 'category_results': category_results, 'selected_category': category, 'object_results': object_results, 'selected_object': object_name})
+	
+	paginator = Paginator(query_results, 20) # Show 25 contacts per page
+	page = request.GET.get('page')
+    	try:
+        	query_paginated_results = paginator.page(page)
+    	except PageNotAnInteger:
+        	# If page is not an integer, deliver first page.
+        	query_paginated_results = paginator.page(1)
+    	except EmptyPage:
+        	# If page is out of range (e.g. 9999), deliver last page of results.
+        	query_paginated_results = paginator.page(paginator.num_pages)
+
+
+	return render(request, 'neal_main/objects.html', {'query_results': query_paginated_results,'selected_flag':selected_flag, 'category_results': category_results, 'selected_category': category, 'object_results': object_results, 'selected_object': object_name})
 
 
 

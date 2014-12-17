@@ -206,6 +206,25 @@
 	Following are the sounds corresponding to objects of the category - {{ selected_category }}:
 	<br />
 	<br /> 
+	<div class="pagination">
+    	<span class="step-links">
+        {% if query_results.has_previous %}
+            <strong><u><a href="?page={{ query_results.previous_page_number }}">Previous Page</a></u></strong>&nbsp;&nbsp;&nbsp;
+        {% endif %}
+
+        <span class="current">
+            Page {{ query_results.number }} of {{ query_results.paginator.num_pages }}. &nbsp;&nbsp;&nbsp;
+        </span>
+
+        {% if query_results.has_next %}
+            <strong><u><a href="?page={{ query_results.next_page_number }}"> Next Page</a></u></strong>
+        {% endif %}
+    	</span>
+	</div>
+	
+	<br />
+	<br />
+	
 	{% for item in query_results %}
 		<div class = "music_content">
 		Object: {{item.object_name}}
@@ -251,6 +270,25 @@
 	Following are the sounds of most popular objects learnt by NESL: 
 	<br />
 	<br />
+
+	<div class="pagination">
+    	<span class="step-links">
+        {% if query_results.has_previous %}
+            <strong><u><a href="?page={{ query_results.previous_page_number }}">Previous Page</a></u></strong>&nbsp;&nbsp;&nbsp;
+        {% endif %}
+
+        <span class="current">
+            Page {{ query_results.number }} of {{ query_results.paginator.num_pages }}. &nbsp;&nbsp;&nbsp;
+        </span>
+
+        {% if query_results.has_next %}
+            <strong><u><a href="?page={{ query_results.next_page_number }}"> Next Page</a></u></strong>
+        {% endif %}
+    	</span>
+	</div>
+	
+	<br />
+	<br />
 	{% for item in query_results %}
 		<div class = "music_content">
 		Object: {{item.object_name}}
@@ -270,6 +308,9 @@
 		<br />
 		</div>
 	{% endfor %}
+
+	
+	
 	</div>
 	</div>	
 
