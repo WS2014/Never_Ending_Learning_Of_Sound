@@ -183,9 +183,14 @@
 		<br />
 		<div class = "topic_display">		
 		<ol start = "1">
-			{% for result in query_results %}
-			<li><a href = {% url 'neal_main:objects_selected' item.category %}> {{ result.object_name }} </a></li>
+			{% for result in object_results %}
+			{% if result.object_name == selected_object %}			
+			<strong><u><li><a href = {% url 'neal_main:objects_selected' item.category %}> {{ result.object_name }} </a></li></u></strong>
 			<br />
+			{% else %}
+			<li><a href = {% url 'neal_main:category_objects_selected' item.category result.object_name %}> {{ result.object_name }} </a></li>
+			<br />
+			{% endif %}
 			{% endfor %}	
 		</ol>
 		<br />	
@@ -198,7 +203,7 @@
 	</ul>
 	</div>
 	<div class = "music_right">
-	Following are the sounds corresponding to objects of the selected category:
+	Following are the sounds corresponding to objects of the category - {{ selected_category }}:
 	<br />
 	<br /> 
 	{% for item in query_results %}

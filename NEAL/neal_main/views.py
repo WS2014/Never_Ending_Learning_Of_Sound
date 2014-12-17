@@ -37,7 +37,7 @@ def objects(request):
 	populate()
 	query_results = NEAL_model.objects.all()
 	category_results = NEAL_model.objects.values('category').distinct()
-	return render(request, 'neal_main/objects.html', {'query_results': query_results,'selected_flag':selected_flag, 'category_results': category_results, 'selected_category': None})
+	return render(request, 'neal_main/objects.html', {'query_results': query_results,'selected_flag':selected_flag, 'category_results': category_results, 'selected_category': None, 'object_results': None, 'selected_object': None})
 
 def objects_selected(request, category):
 	template = 'neal_main/objects.html'
@@ -46,7 +46,19 @@ def objects_selected(request, category):
 	query_results = []
 	query_results = NEAL_model.objects.filter(category = category)
 	category_results = NEAL_model.objects.values('category').distinct()
-	return render(request, 'neal_main/objects.html', {'query_results': query_results,'selected_flag':selected_flag, 'category_results': category_results, 'selected_category': category})
+	object_results = NEAL_model.objects.filter(category = category).values('object_name').distinct()
+	return render(request, 'neal_main/objects.html', {'query_results': query_results,'selected_flag':selected_flag, 'category_results': category_results, 'selected_category': category, 'object_results': object_results, 'selected_object': None})
+
+def category_objects_selected(request, category, object_name):
+	template = 'neal_main/objects.html'
+	selected_flag = 0==0
+	os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NEAL.settings')
+	query_results = []
+	query_results = NEAL_model.objects.filter(category = category).filter(object_name = object_name)
+	category_results = NEAL_model.objects.values('category').distinct()
+	object_results = NEAL_model.objects.filter(category = category).values('object_name').distinct()
+	return render(request, 'neal_main/objects.html', {'query_results': query_results,'selected_flag':selected_flag, 'category_results': category_results, 'selected_category': category, 'object_results': object_results, 'selected_object': object_name})
+
 
 
 def segments(request):
