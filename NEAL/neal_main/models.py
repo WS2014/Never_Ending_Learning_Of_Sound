@@ -33,3 +33,15 @@ class NEAL_download_model(models.Model):
 
 
 
+class NEAL_crawl_model(models.Model):
+    id = models.AutoField(primary_key=True)
+    object_name = models.CharField(max_length = 200)
+    duration = models.CharField(max_length = 200)
+    keywords = models.CharField(max_length = 500)
+    date_crawler = models.DateTimeField()
+    source_url = models.CharField(max_length = 200)
+    def __unicode__(self):
+        return self.object_name
+
+
+
