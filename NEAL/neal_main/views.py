@@ -103,11 +103,50 @@ def category_objects_selected(request, category, object_name):
 
 
 def segments(request):
-	print 'data insert'
+	
 	os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NEAL.settings')
-	populate()
 	query_results = NEAL_download_model.objects.all()
 	return render(request, 'neal_main/segments.html', {'query_results': query_results})
+
+
+def crawler(request):
+	
+	os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NEAL.settings')
+	query_results = NEAL_crawl_model.objects.all()
+	#youtube_urls = NEAL_crawl_model.objects.values('source_url')
+	#print youtube_urls
+	#youtube_keys = []
+	#for item in youtube_urls:
+	#	youtube_keys.append(item['source_url'].split("watch?v=")[1])
+	#print youtube_keys
+	
+	#print query_results
+	
+	new_query_results = []	
+
+	for item in query_results:
+		a = {}
+		a['object_name'] = item.object_name
+		a['duration'] = item.duration	
+		a['keywords'] = item.keywords
+		a['date_crawler'] = item.date_crawler
+		a['source_url'] = item.source_url
+		a['embed_link'] = item.source_url.split("watch?v=")[1]
+		new_query_results.append(a)
+
+	paginator = Paginator(new_query_results, 6) # Show 25 contacts per page
+	page = request.GET.get('page')
+    	try:
+        	query_paginated_results = paginator.page(page)
+    	except PageNotAnInteger:
+        	# If page is not an integer, deliver first page.
+        	query_paginated_results = paginator.page(1)
+    	except EmptyPage:
+        	# If page is out of range (e.g. 9999), deliver last page of results.
+        	query_paginated_results = paginator.page(paginator.num_pages)
+
+	return render(request, 'neal_main/crawler.html', {'query_results': query_paginated_results})
+
 
 
 # Create your views here. Define templates and try rendering templates from the methods defined here and call these methods from urls.py

@@ -128,7 +128,7 @@
 	<h2><a href = "{% url 'neal_main:neal_index' %}">Home</a></h2>
 	</div>
 	<div class = "tab">
-	<h2><a href = "{% url 'neal_main:objects' %}	">Objects</a></h2>
+	<h2><a href = "{% url 'neal_main:objects' %}">Objects</a></h2>
 	</div>
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:segments' %}">Segments</a></h2>
@@ -136,7 +136,6 @@
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:crawler' %}">Crawler</a></h2>
 	</div>
-	
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:downloads' %}">Downloads</a></h2>
 	</div>
@@ -149,18 +148,60 @@
 	<br />
 	<h3>Vision</h3>
 	<br />
-	Never Ending Learning of Sound (NELS)  is a computer program that works 24/7 learning information about sounds that it finds on the internet. It runs through the input audio files over web and tries to identify which sounds occur and when in the audio. It is an effort to build the world’s largest aural knowledge base with minimum human labeling effort – one that would be useful in several researches. 
-	<!--
-	{% load staticfiles %}
-	 <audio controls>
-  	<source src="{{MEDIA_URL}}neal_main/1.mp3" type="audio/mpeg">
-  	Your browser does not support the audio tag.
-	</audio> 
-	-->
+	Never Ending Learning of Sound (NELS)  is a computer program that works 24/7 learning information about sounds that it finds on the internet.  
 	<br />
 	
 	<br />
 	<br />
+	Crawled Audio Files:
+	<br />
+	<br />
+	<div class="pagination">
+    	<center>
+	<span class="step-links">
+        {% if query_results.has_previous %}
+            <strong><u><a href="?page={{ query_results.previous_page_number }}">Previous Page</a></u></strong>&nbsp;&nbsp;&nbsp;
+        {% endif %}
+
+        <span class="current">
+            Page {{ query_results.number }} of {{ query_results.paginator.num_pages }}. &nbsp;&nbsp;&nbsp;
+        </span>
+
+        {% if query_results.has_next %}
+            <strong><u><a href="?page={{ query_results.next_page_number }}"> Next Page</a></u></strong>
+        {% endif %}
+	
+    	</span>
+	</center>
+	</div>
+	<br/ >
+	<br />
+	{% for item in query_results %}		
+	<div class = "Frames"><iframe width="420" height="345" src="http://www.youtube.com/embed/{{ item.embed_link }}" frameborder = "2"></iframe><br />Object Name: {{ item.object_name }} <br /> Crawled On: {{ item.date_crawler }} <br/> <br /></div>
+	{% endfor %}
+
+	<!--
+	<table cellpadding = "30px">
+    <tr>
+        <th>Object Name</th>
+        <th>duration</th>
+   	<th>keywords</th>
+    	<th>date_crawler</th>
+    	<th>source_url</th>
+    </tr>
+    
+    <tr> 
+    <tr>
+        <th>{{ item.object_name }}</th>
+        <th>{{ item.duration }}</th>
+   	<th>{{ item.keywords }}</th>
+    	<th>{{ item.date_crawled }}</th>
+    	<th>{{ item.source_url }}</th>
+    </tr>
+	
+    
+</table>
+	-->
 	</div>	
 	
 </html>

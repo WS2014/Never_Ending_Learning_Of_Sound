@@ -75,6 +75,27 @@ time, mark, audio, video {
 	
 }
 
+.frames{
+	
+	text-align:center;
+	padding: 2%;
+	font-size: 18px;
+	width:40%;
+    	color: #FFFFCC;
+	float:right;
+	text-shadow: 0 1px 0 #000000;
+		
+    	border-style: solid;
+	 
+    	border-width: 5px 5px 5px 5px;
+	 
+    	border-color: #666666;
+	
+    	padding:  10px 10px 10px 10px;
+	
+    	box-shadow: 0px 10px 0px -3px #383838, 0px 20px 5px -5px #2E2E2E;
+}
+	
 
 .music_content{
 	text-align: center;
