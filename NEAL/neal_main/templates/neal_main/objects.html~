@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'neal_main/css.css' %}" />
 
-<title>NEAL: Never Ending Audio Learning
+<title>NELS: Never Ending Learning of Sound
 </title>
 
 </head>
@@ -12,7 +12,7 @@
 <div id = "title">
 	<h1 class="logo">
 		<a href="" target = "_parent">
-		NEAL: Never Ending Audio Learner
+		NELS: Never Ending Learning of Sound
 		</a>
 	</h1>
 
@@ -132,6 +132,9 @@
 	<h2><a href = "{% url 'neal_main:segments' %}">Segments</a></h2>
 	</div>
 	<div class = "tab">
+	<h2><a href = "{% url 'neal_main:crawler' %}">Crawler</a></h2>
+	</div>
+	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:downloads' %}">Downloads</a></h2>
 	</div>
 	<div class = "tab">
@@ -181,24 +184,50 @@
 		{% if item.category == selected_category %}
 		<strong><u><li><a href = "{% url 'neal_main:objects' %}">{{ item.category }}</a></li></u></string>
 		<br />
+		<div class = "topic_display">		
 		<ol start = "1">
-			{% for result in query_results %}
-			<li><a href = {% url 'neal_main:objects_selected' item.category %}> {{ result.object_name }} </a></li>
+			{% for result in object_results %}
+			{% if result.object_name == selected_object %}			
+			<strong><u><li><a href = {% url 'neal_main:objects_selected' item.category|slugify %}> {{ result.object_name }} </a></li></u></strong>
 			<br />
+			{% else %}
+			<li><a href = {% url 'neal_main:category_objects_selected' item.category|slugify result.object_name|slugify %}> {{ result.object_name }} </a></li>
+			<br />
+			{% endif %}
 			{% endfor %}	
 		</ol>
 		<br />	
+		</div>
 		{% else %}
-		<li><a href = "{% url 'neal_main:objects_selected' item.category %}">{{ item.category }}</a>
+		<li><a href = "{% url 'neal_main:objects_selected' item.category|slugify %}">{{ item.category }}</a>
 		<br />
 		{% endif %}	
 	{% endfor %}
 	</ul>
 	</div>
 	<div class = "music_right">
-	Following are the sounds corresponding to objects of the selected category:
+	Following are the sounds corresponding to objects of the category - {{ selected_category }}:
 	<br />
 	<br /> 
+	<div class="pagination">
+    	<span class="step-links">
+        {% if query_results.has_previous %}
+            <strong><u><a href="?page={{ query_results.previous_page_number }}">Previous Page</a></u></strong>&nbsp;&nbsp;&nbsp;
+        {% endif %}
+
+        <span class="current">
+            Page {{ query_results.number }} of {{ query_results.paginator.num_pages }}. &nbsp;&nbsp;&nbsp;
+        </span>
+
+        {% if query_results.has_next %}
+            <strong><u><a href="?page={{ query_results.next_page_number }}"> Next Page</a></u></strong>
+        {% endif %}
+    	</span>
+	</div>
+	
+	<br />
+	<br />
+	
 	{% for item in query_results %}
 		<div class = "music_content">
 		Object: {{item.object_name}}
@@ -206,7 +235,7 @@
 		<br />
 		{% load staticfiles %}
 	 	<audio controls>
-  		<source src="{% static 'downloads/1.mp3' %}" type="audio/mpeg">
+  		<source src="{% static 'downloads/1.mp3' %} " type="audio/mpeg">
   		Your browser does not support the audio tag.
 		</audio> 
 		<br />
@@ -232,7 +261,7 @@
 	
 	<ul>	
 	{% for item in category_results %}
-	<li><a href = "{% url 'neal_main:objects_selected' item.category %}">{{ item.category }}</a>
+	<li><a href = "{% url 'neal_main:objects_selected' item.category|slugify %}">{{ item.category }}</a>
 	<br />
 	{% endfor %}
 	</ul>
@@ -241,7 +270,26 @@
 	Please select a category from the left to view objects corresponding to them. 
 	<br />
 	<br />
-	Following are the sounds of most popular objects learnt by NESL: 
+	Following are the sounds of most popular objects learnt by NELS: 
+	<br />
+	<br />
+
+	<div class="pagination">
+    	<span class="step-links">
+        {% if query_results.has_previous %}
+            <strong><u><a href="?page={{ query_results.previous_page_number }}">Previous Page</a></u></strong>&nbsp;&nbsp;&nbsp;
+        {% endif %}
+
+        <span class="current">
+            Page {{ query_results.number }} of {{ query_results.paginator.num_pages }}. &nbsp;&nbsp;&nbsp;
+        </span>
+
+        {% if query_results.has_next %}
+            <strong><u><a href="?page={{ query_results.next_page_number }}"> Next Page</a></u></strong>
+        {% endif %}
+    	</span>
+	</div>
+	
 	<br />
 	<br />
 	{% for item in query_results %}
@@ -263,6 +311,9 @@
 		<br />
 		</div>
 	{% endfor %}
+
+	
+	
 	</div>
 	</div>	
 

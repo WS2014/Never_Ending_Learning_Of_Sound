@@ -86,5 +86,5 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = 'media/'
 
-MEDIA_ROOT = os.path.join(os.path.abspath(__file__), './media/')
+MEDIA_ROOT = os.path.join(os.path.abspath(__file__), './../../media/')
 #MEDIA_ROOT = '/home/rohan/Desktop/rohan/NITK/NEAL/media/'

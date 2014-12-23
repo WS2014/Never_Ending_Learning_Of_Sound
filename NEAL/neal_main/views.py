@@ -1,9 +1,37 @@
 import os
 import datetime
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from forms import DocumentForm
+from class_read import *
+
+def list_my_files(request):
+    # Handle file upload
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = Document(docfile = request.FILES['docfile'])
+            newdoc.save()
+
+            # Redirect to the document list after POST
+            return HttpResponseRedirect(reverse('neal_main:list'))
+    else:
+        form = DocumentForm() # A empty, unbound form
+
+    # Load documents for the list page
+    documents = Document.objects.all()
+
+    # Render list page with the documents and the form
+    return render(request, 'neal_main/list.html', {'documents': documents, 'form': form})
+    """
+    return render_to_response(
+        'neal_main/list.html', {'documents': documents, 'form': form}, context_instance=RequestContext(request)
+    )
+    """
 
 def populate():
 	object_name = 'Dog'
@@ -19,7 +47,26 @@ def populate():
 	
 	
 def neal_index(request):
-	return render(request, 'neal_main/index.html', {})
+	if request.method == 'POST':
+        	form = DocumentForm(request.POST, request.FILES)
+		if form.is_valid():
+        		newdoc = Document(docfile = request.FILES['docfile'])
+           		newdoc.save()
+
+            	# Redirect to the document list after POST
+            	return HttpResponseRedirect(reverse('neal_main:neal_index'))
+    	else:
+        	form = DocumentForm() # A empty, unbound form
+
+    	# Load documents for the list page
+    	documents = Document.objects.all()
+	
+	list1 = []
+	list1 = get_start_end_times()
+		
+
+    	# Render list page with the documents and the form
+    	return render(request, 'neal_main/index.html', {'form': form, 'list1':list1})
 
 
 def about(request):

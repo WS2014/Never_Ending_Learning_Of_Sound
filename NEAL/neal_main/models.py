@@ -43,5 +43,8 @@ class NEAL_crawl_model(models.Model):
     def __unicode__(self):
         return self.object_name
 
+class Document(models.Model):
+    docfile = models.FileField(upload_to='uploaded_audio_files/')
+
 
 

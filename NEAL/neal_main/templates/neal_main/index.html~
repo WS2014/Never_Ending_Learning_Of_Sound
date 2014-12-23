@@ -3,8 +3,46 @@
 <head>
 
 <link rel="stylesheet" type="text/css" href="{% static 'neal_main/css.css' %}" />
+<script src="{% static 'downloads/audio.js' %}"></script>
+<script>
+// ensure the web page (DOM) has loaded
+// ensure the web page (DOM) has loaded
+function delineate(str1,str2)
+{
+document.addEventListener("DOMContentLoaded", function () {
+// Create a popcorn instance by calling Popcorn("#id-of-my-video")
+var pop = Popcorn("#ourvideo");
+// add a footnote at 2 seconds, and remove it at 6 seconds
+pop.footnote({
+start: str1,
+end: str2,
+text: "NELS says: Guitar detected.",
+target: "footnotediv"
+});
+// play the video right away
+//pop.play();
+}, false);
 
-<title>NESL: Never Ending Sound Learning
+}
+
+val= new Array();
+var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+	val[i]=pair[1]        
+	
+    }
+
+var a = parseInt(val[0])
+var b = parseInt(val[1])
+
+
+
+delineate(a,b);
+
+</script>
+<title>NELS: Never Ending Learning of Sound
 </title>
 
 </head>
@@ -12,7 +50,7 @@
 <div id = "title">
 	<h1 class="logo">
 		<a href="" target = "_parent">
-		NESL: Never Ending Sound Learner
+		NELS: Never Ending Learning of Sound
 		</a>
 	</h1>
 
@@ -35,12 +73,12 @@
             <tr>
                 <td style="text-align:right">
 
-                Concepts: 
+                Concepts: 7
 
                 </td>
 		<td style="text-align:right">
 
-                Audio Clips:   
+                Audio Clips: 850
 
                 </td>
                 
@@ -48,12 +86,12 @@
             <tr>
                 <td style="text-align:right">
 
-                Segmentations:    
+                Segmentations: 1, 93, 000
 
                 </td>
                 <td style="text-align:right">
 
-                Audio Relationships: 
+                &nbsp;&nbsp;&nbsp;Audio Relationships: to be mapped
 
                 </td>
             </tr>
@@ -128,24 +166,70 @@
 	<h2><a href = "{% url 'neal_main:neal_index' %}">Home</a></h2>
 	</div>
 	<div class = "tab">
-	<h2><a href = "{% url 'neal_main:objects' %}">Objects</a></h2>
+	<h2><a href = "{% url 'neal_main:objects' %}	">Objects</a></h2>
 	</div>
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:segments' %}">Segments</a></h2>
 	</div>
+	<div class = "tab">
+	<h2><a href = "{% url 'neal_main:crawler' %}">Crawler</a></h2>
+	</div>
+	
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:downloads' %}">Downloads</a></h2>
 	</div>
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:about' %}">About</a></h2>
 	</div>
-	
 	<div style="float:left;">
 	<br />
 	<br />
 	<h3>Vision</h3>
 	<br />
-	Never Ending Sound Learner (NESL)  is a computer program that works 24/7 learning information about sounds that it finds on the internet. It runs through the input audio files over web and tries to identify which sounds occur and when in the audio. It is an effort to build the world’s largest aural knowledge base with minimum human labeling effort – one that would be useful in several researches. 
+	Never Ending Learning of Sound (NELS)  is a computer program that works 24/7 learning information about sounds that it finds on the internet. It runs through the input audio files over web and tries to identify which sounds occur and when in the audio. It is an effort to build the world’s largest aural knowledge base with minimum human labeling effort – one that would be useful in several researches. 
+	<br />
+	<br />
+	<hr>
+	<br />
+	<br />
+	
+	<center>
+        <!-- Upload form. Note enctype attribute! -->
+	Upload an audio file. NELS will categorise it
+	<br />
+	
+        <form action="{% url 'neal_main:neal_index' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>&nbsp;
+            <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+		<br />
+		
+            <p>
+                {{ form.docfile.errors }}
+                &nbsp;&nbsp;&nbsp;
+		{{ form.docfile }}
+            </p>
+		<br />
+		
+            <p><input type="submit" value="Upload" /></p>
+        </form>
+    	</center>
+	<br />
+	<br />
+	<center>
+		{% for item in list1 %}
+	    		<script>
+			delineate({{ item.start }}, {{ item.end }});
+			</script>
+    		{% endfor %}		
+		
+		<audio  id="ourvideo" controls>
+  		<source src="{% static 'downloads/1.mp3' %}" type="audio/mpeg">
+  		Your browser does not support the audio tag.
+		</audio> 
+		<div id="footnotediv"></div>
+
+	</center>
 	<!--
 	{% load staticfiles %}
 	 <audio controls>

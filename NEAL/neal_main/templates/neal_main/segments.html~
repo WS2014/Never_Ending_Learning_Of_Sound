@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'neal_main/css.css' %}" />
 
-<title>NEAL: Never Ending Audio Learning
+<title>NELS: Never Ending Learning of Sound
 </title>
 
 </head>
@@ -12,7 +12,7 @@
 <div id = "title">
 	<h1 class="logo">
 		<a href="" target = "_parent">
-		NEAL: Never Ending Audio Learner
+		NELS: Never Ending Learning of Sound
 		</a>
 	</h1>
 
@@ -134,6 +134,9 @@
 	<h2><a href = "{% url 'neal_main:segments' %}">Segments</a></h2>
 	</div>
 	<div class = "tab">
+	<h2><a href = "{% url 'neal_main:crawler' %}">Crawler</a></h2>
+	</div>
+	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:downloads' %}">Downloads</a></h2>
 	</div>
 	<div class = "tab">
@@ -145,12 +148,12 @@
 	<br />
 	<h3>Vision</h3>
 	<br />
-	Never Ending Sound Learner (NESL)  is a computer program that works 24/7 learning information about sounds that it finds on the internet.  
+	Never Ending Learning of Sound (NELS)  is a computer program that works 24/7 learning information about sounds that it finds on the internet.  
 	<br />
 	
 	<br />
 	<br />
-	Database:<br />
+	Segments:<br />
 	<table cellpadding = "30px">
     <tr>
         <th>Object Name</th>
