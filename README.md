@@ -5,6 +5,7 @@ NEVER ENDING LEARNING OF SOUND:
 The world is full of sounds which carry a wealth of information about the processes that create them. Nature has its own grammar in the sense that the sounds follow certain rules that humans can understand intuitively, but this information is unusable by machines. The NELS team is developing a web-based intelligence system that will continually search the internet for sound samples and automatically learn their meanings, associations, and semantics. This is an ambitious, long-term project that is literally intended to never end.
 
 Approach to the Problem:
+=========================
 
 Step 1 :
 -------
@@ -83,6 +84,14 @@ Step 19 :
 The Predicted test file is used to draw the ROC Plots.
 -------
 
+OPENSMILE INSTALLATION SCRIPT
+=========================
+
+Run following cmd to install opensmile and all its dependencies.
+ 
+bash opensmile/install_opensmile.sh
+
+
 Tools Used:
 
  openSMILE
@@ -133,9 +142,10 @@ Project Contributors:
 The following is the NELS Team. We are developing a web-based intelligence system that will continually search the internet for sound samples and automatically learn their meanings, associations, and semantics. If you have any questions or want to contribute, contact:
 
 1. Rohan Badlani, 3rd year undergraduate student, Computer Science, BITS Pilani (rohan.badlani@gmail.com)
-2. Aditi Bhatnagar, 3rd year undergraduate student, Information and Communication Technology, DAICT (aditi24.bhatnagar@gmail.com)
+2. Aditi Bhatnagar, 3rd year undergraduate student, Information and Communication Technology, DAIICT (aditi24.bhatnagar@gmail.com)
 3. Amogh Hiremath, 1st year M.Tech Student, Electronics and Communication, NIT Surathkal (amogh3892@gmail.com)
 4. Ankit Shah, 4th year undergraduate student, Electronics and Communication, NIT Surathkal (ankit.tronix@gmail.com)
 5. Parnika Nevaskar, 2nd year undergraduate student, Computer Science, DAU Indore, (parnika.nevaskar@gmail.com)
 
+The developers of the project would like to thank Prof Bhiksha Raj, CMU, Prof Rita Singh, CMU and Pulkit Agrawal, PhD Student, UCB for their suggestions and guidance throughout the execution of this project.
 
