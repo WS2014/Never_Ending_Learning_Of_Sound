@@ -7,3 +7,4 @@ bash autonorm_train.sh
 bash install_OpenMPI_Linux.sh
 bash install_MPI_C_Compiler.sh
 bash install_ParallelNetCDF.sh
+bash apply_kmeans_on_accumulated_text_files.sh
