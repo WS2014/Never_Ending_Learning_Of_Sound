@@ -29,7 +29,7 @@ bash autogen.sh
 sh buildWithInstalledPortAudio.sh
 ./SMILExtract -h
 
-./SMILExtract -C config/MFCC12_E_D_A.conf -I ./../1.wav -O ./../mfcc.htk
+#./SMILExtract -C config/MFCC12_E_D_A.conf -I ./../1.wav -O ./../mfcc.htk
 cd ..
 
 
@@ -37,7 +37,7 @@ wget http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.zip
 unzip voicebox.zip -d voicebox
 
 VOICEBOX_PATH=$result/voicebox/
-HTKFILE=mfcc.htk
-OUTFILE=mfcc.txt
+#HTKFILE=mfcc.htk
+#OUTFILE=mfcc.txt
 
-octave -qf --eval "htk2txt('$HTKFILE','$VOICEBOX_PATH','$OUTFILE')"
+#octave -qf --eval "htk2txt('$HTKFILE','$VOICEBOX_PATH','$OUTFILE')"
