@@ -1,0 +1,11 @@
+RUNNING INSTRUCTIONS:
+
+1. Install Dependecies
+bash install_dependencies.sh
+
+2. Extract Features and Get Kmeans Cluster Assignment for sound samples in folder sound_samples/
+bash train_bashfile.sh
+
+3. Get Histograms (Bag of words)
+bash auto_histogram.sh
+
