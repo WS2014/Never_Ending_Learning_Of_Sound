@@ -31,7 +31,7 @@ def accumulate_file(folder_name, accumulation_folder_name):
 							current_count = current_count + file_count
 							filelines.write(str(subdirectory) + "/" + str(current_file) + "," + str(file_count)+"\n")
 							
-					catg_file.write(subdirectory+":"+str(current_count)+"start:" + str(global_count+1) + "end:" + str(global_count+current_count) + "\n")
+					catg_file.write(subdirectory+":"+str(current_count)+",start:" + str(global_count+1) + ",end:" + str(global_count+current_count) + "\n")
 					global_count = global_count + current_count
 
 
