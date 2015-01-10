@@ -4,7 +4,7 @@
 current_dir=${PWD}
 sound_samples_folder="sound_samples"
 text_mfcc_folder="$current_dir/text_samples_folder"
-accumulation_folder="$current_dir/accumulation_text_folder"
+accumulation_folder="$current_dir/accumulated_folder"
 kmeans_output="$current_dir/kmeans_output"
 text_histogram_folder="$current_dir/text_histogram_folder"
 text_histogram_folder_norm="$current_dir/text_histogram_folder_norm"
