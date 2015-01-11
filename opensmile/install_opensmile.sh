@@ -5,13 +5,15 @@ result=${PWD}
 echo "Everything will be done in this directory."
 echo $result
 
-wget http://www.audeering.com/research-and-open-source/files/openSMILE-2.1.0.tar.gz
+#OpenSMILE installation webpage. ### Before installation if there is a file with name openSMILE-2.1.0.tar.gz then delete it if installation is not completed 
+#Else the wget command skips download if file is already present
+wget -nc http://www.audeering.com/research-and-open-source/files/openSMILE-2.1.0.tar.gz
 tar -zxvf openSMILE-2.1.0.tar.gz
 sudo apt-get install build-essential libtool
 
 #PORTAUDIO INSTALLATION
 echo "run this in the directory where you want to install portaudio."
-wget http://www.portaudio.com/archives/pa_stable_v19_20140130.tgz
+wget -nc http://www.portaudio.com/archives/pa_stable_v19_20140130.tgz
 sudo apt-get install libasound-dev
 tar -zvxf pa_stable_v19_20140130.tgz
 cd portaudio
