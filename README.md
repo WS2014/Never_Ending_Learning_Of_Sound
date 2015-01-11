@@ -46,9 +46,9 @@ Rohan Badlani, 3rd year undergraduate student, Computer Science, BITS Pilani (ro
 
 Aditi Bhatnagar, 3rd year undergraduate student, Information and Communication Technology, DAIICT (aditi24.bhatnagar@gmail.com)
 
-Amogh Hiremath, 1st year M.Tech Student, Electronics and Communication, NIT Surathkal (amogh3892@gmail.com)
+Amogh Hiremath, 1st year M.Tech Student, Electronics and Communication, NITK Surathkal (amogh3892@gmail.com)
 
-Ankit Shah, 4th year undergraduate student, Electronics and Communication, NIT Surathkal (ankit.tronix@gmail.com)
+Ankit Shah, 4th year undergraduate student, Electronics and Communication, NITK Surathkal (ankit.tronix@gmail.com)
 
 Parnika Nevaskar, 2nd year undergraduate student, Computer Science, DAU Indore, (parnika.nevaskar@gmail.com)
 
