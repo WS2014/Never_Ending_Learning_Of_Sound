@@ -1,8 +1,5 @@
-#THis file aims to generates sliding windows , slide window size and sliding size is mentioned in input along with the normalized file name whose slides are to be generated, the output window files are generated inside a folder created (in the current directoryy from where the command is executed), folder name is in pattern: slide_<slide window size>_<slide size> e.g. slide_80_10 
-
-
 import sys
-
+import os
 def createFile(dir_name,m):
 	filename= "window"+ str(m)
 	file= open(dir_name+"/"+filename, 'w')
@@ -11,7 +8,7 @@ def createFile(dir_name,m):
 
 def generateSlides(file_name, sws, ss):
 	f=open(file_name,'r')
-	dir_name= "slides_" +sws+"_"+ss	
+	dir_name= "slides_" +str(sws)+"_"+str(ss)	
 	create_dir_cmd ="mkdir "+dir_name
 	os.system(create_dir_cmd)
 	
