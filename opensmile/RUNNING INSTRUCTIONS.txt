@@ -1,5 +1,7 @@
 RUNNING INSTRUCTIONS:
 
+These are the instructions for the training of database for sound samples collected.
+
 1. Install Dependecies
 bash install_dependencies.sh
 
@@ -9,3 +11,8 @@ bash train_bashfile.sh
 3. Get Histograms (Bag of words)
 bash auto_histogram.sh
 
+--------------------------------------------------------------------------
+For the testing of a file
+
+1. Extract features and get the normalized values of the generated file and later run sliding window to generate separate files for the window
+bash test_bashfile.sh
