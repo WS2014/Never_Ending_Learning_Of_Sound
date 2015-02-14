@@ -11,6 +11,9 @@ bash train_bashfile.sh
 3. Get Histograms (Bag of words)
 bash auto_histogram.sh
 
+4. Generate a svm.train file from the training data
+bash auto_svm.sh
+
 --------------------------------------------------------------------------
 For the testing of a file
 
