@@ -9,7 +9,7 @@ echo $result
 #Else the wget command skips download if file is already present
 wget -nc http://www.audeering.com/research-and-open-source/files/openSMILE-2.1.0.tar.gz
 tar -zxvf openSMILE-2.1.0.tar.gz
-sudo apt-get install build-essential libtool
+sudo apt-get install build-essential libtool autoconf automake xutils-dev
 
 #PORTAUDIO INSTALLATION
 echo "run this in the directory where you want to install portaudio."
