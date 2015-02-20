@@ -8,3 +8,6 @@ bash install_python_oct2py.sh
 bash install_OpenMPI_Linux.sh
 bash install_MPI_C_Compiler.sh
 bash install_ParallelNetCDF.sh
+
+#install LibSVM
+bash install_LibSVM.sh
