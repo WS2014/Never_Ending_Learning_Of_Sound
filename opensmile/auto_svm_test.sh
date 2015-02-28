@@ -7,7 +7,7 @@ text_mfcc_folder="$current_dir/text_samples_folder_test"
 accumulation_folder="$current_dir/accumulated_folder_test"
 kmeans_output="$current_dir/kmeans_output_test"
 text_histogram_folder="$current_dir/text_histogram_folder_test"
-text_histogram_folder_norm="$current_dir/text_histogram_folder_norm"
+text_histogram_folder_norm="$current_dir/text_histogram_folder_norm_test"
 echo "Enter the category for which you want to train the SVM - The name of category needs to be entered as a single word in lower case"
 read category
 SVM_input="$current_dir/SVM_input_test"
