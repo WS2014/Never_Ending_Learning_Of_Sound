@@ -1,18 +1,17 @@
 import sys
 import os
 def createFile(dir_name,m):
-	filename= "window"+ str(m)
+	filename= "windows"+ str(m)
 	file= open(dir_name+"/"+filename, 'w')
 	return file
 
 
-def generateSlides(directory_name, file_name, sws, ss):
+def generateSlides(directory_name, file_name, sws):
 	f=open(file_name,'r')
-	dir_name= str(directory_name)	
+	dir_name= str(directory_name)
 	create_dir_cmd ="mkdir "+dir_name
 	os.system(create_dir_cmd)
 	
-	#fp= open('slidingwindows40.txt', 'a')
 	file_content = []
 	file_content = f.readlines()
 
@@ -32,7 +31,7 @@ def generateSlides(directory_name, file_name, sws, ss):
 	  for i in range(frame_cnt , ending_frame):
 		  fp.write(file_content[i])
 	    
-	  frame_cnt=frame_cnt+ss
+	  frame_cnt=frame_cnt+sws
 	  ending_frame= frame_cnt+sws
 
 	# remaining jotting down in one file not essentially of size 80
@@ -43,12 +42,11 @@ def generateSlides(directory_name, file_name, sws, ss):
 
 	fp.close()
 
-if(len(sys.argv)!=5):
-    print "\nUSAGE: python slide.py <normalized file> <slide window size eg. 80> <slide size eg 10> <directory name for sliding>\n" 
+if(len(sys.argv)!=4):
+    print "\nUSAGE: python split.py <normalized file> <slide window size eg. 80> <directory name for sliding>\n" 
 else:
     file_name = ""
     file_name = str(sys.argv[1])
     sws=int(sys.argv[2])
-    ss=int(sys.argv[3])
-    directory_name=str(sys.argv[4])
-    generateSlides(directory_name, file_name, sws, ss)
+    directory_name=str(sys.argv[3])
+    generateSlides(directory_name, file_name, sws)
