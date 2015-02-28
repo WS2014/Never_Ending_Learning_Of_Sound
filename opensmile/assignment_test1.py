@@ -6,7 +6,7 @@ from scipy.cluster.vq import vq
 from numpy import array
 
 def assignment(accumulated_folder_path,cluster_folder_path):
-	with open(accumulated_folder_path + "/normalized_text.txt", "r") as userfile:
+	with open(accumulated_folder_path + "/accumulation_after_slide.txt", "r") as userfile:
 			lst2 = []	
 			for line in userfile:
 				data = re.split(' |\n', line)
@@ -18,7 +18,7 @@ def assignment(accumulated_folder_path,cluster_folder_path):
 				
 			userfile.close()
 
-
+	print len(lst2)
 	with open(cluster_folder_path + "/normalized_text.txt.cluster_centres", "r") as cluster_file:
 			lst3 = []	
 			for line in cluster_file:
@@ -38,8 +38,8 @@ def assignment(accumulated_folder_path,cluster_folder_path):
 	features = array(lst2)
 
 	[C,D] = vq(features,code_book)
-	#print C
-	#print D
+	print C
+	print D
 	return C
 	print len(C)
 
