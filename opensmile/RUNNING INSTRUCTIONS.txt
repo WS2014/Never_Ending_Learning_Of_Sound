@@ -11,8 +11,20 @@ bash train_bashfile.sh
 3. Get Histograms (Bag of words)
 bash auto_histogram.sh
 
+4. Generate a .train file
+bash auto_svm.sh
+
 --------------------------------------------------------------------------
 For the testing of a file
 
 1. Extract features and get the normalized values of the generated file and later run sliding window to generate separate files for the window
 bash test_bashfile.sh
+
+2. Get the Histograms (Bag of Words)
+bash auto_histogram_test.sh
+
+3. Generate a .test file for the svm predict step
+bash auto_svm_test.sh
+
+4. Predict using the files generated
+bash svm_predict.sh
