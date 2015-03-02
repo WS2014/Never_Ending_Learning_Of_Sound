@@ -29,4 +29,4 @@ read category
 
 ./svm-train $SVM_input/svm_input_$category.train $SVM_input/svm_input_$category.train.model
 
-./svm-predict $SVM_input_test/svm_input_text_histogram_folder_norm_test.test $SVM_input/svm_input_$category.train.model $SVM_output/svm_output_$category.txt
+./svm-predict $SVM_input_test/svm_input_$category.test $SVM_input/svm_input_$category.train.model $SVM_output/svm_output_$category.txt
