@@ -27,6 +27,7 @@ cd $libSVM_path
 echo "Enter the category for which you want to train the SVM - The name of category needs to be entered as a single word in lower case"
 read category
 
-./svm-train $SVM_input/svm_input_$category.train $SVM_input/svm_input_$category.train.model
+./svm-train -s 0 -b 1 $SVM_input/svm_input_$category.train $SVM_input/svm_input_$category.train.model
 
-./svm-predict $SVM_input_test/svm_input_$category.test $SVM_input/svm_input_$category.train.model $SVM_output/svm_output_$category.txt
+./svm-predict -b 1 $SVM_input_test/svm_input_$category.test $SVM_input/svm_input_$category.train.model $SVM_output/svm_output_$category.txt
+ 
