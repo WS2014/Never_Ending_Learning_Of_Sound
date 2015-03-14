@@ -28,3 +28,8 @@ bash auto_svm_test.sh
 
 4. Predict using the files generated
 bash svm_predict.sh
+
+-------------------------------------------------------------------------------
+
+Now to generate the precision and recall curve
+bash precision_recall_plot.sh
