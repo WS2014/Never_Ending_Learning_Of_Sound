@@ -25,21 +25,6 @@ target: "footnotediv"
 
 }
 
-val= new Array();
-var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-	val[i]=pair[1]        
-	
-    }
-
-var a = parseInt(val[0])
-var b = parseInt(val[1])
-
-
-
-delineate(a,b);
 
 </script>
 <title>NELS: Never Ending Learning of Sound
@@ -63,12 +48,14 @@ delineate(a,b);
 </div>
 <div id="topmiddle" style="float: left; margin-top: 20px; margin-left: 30px;">
 <font color = "#cccccc">
-    <h3 style="width: 40px;">
+    <center>
+	<h3 style="width: 40px;">
 
-        Statistics:
+         Statistics:
 
     </h3>
-    <table style="font-size: 0.8em; margin-left: 20px; line-height: 1.4;">
+    </center>
+	<table style="font-size: 0.8em; margin-left: 20px; line-height: 1.4;">
         <tbody>
             <tr>
                 <td style="text-align:right">
@@ -86,12 +73,13 @@ delineate(a,b);
             <tr>
                 <td style="text-align:right">
 
-                Segmentations: 1, 93, 000
+                &nbsp;&nbsp;&nbsp;Segmentations: 1, 93, 000
 
                 </td>
                 <td style="text-align:right">
 
                 &nbsp;&nbsp;&nbsp;Audio Relationships: to be mapped
+
 
                 </td>
             </tr>
@@ -99,10 +87,12 @@ delineate(a,b);
     </table>
 </font>
 </div>
+
 <div id="topright">
 <font color = "#cccccc">
 <input id="category" value="Search Here"></input>
-<input class="button" type="submit" onclick="javascript: formSubmit()" value="Submit" name="SubmitT"></input>
+<input class="button" type="submit" style="float:left;" onclick="javascript: formSubmit()" value="Submit" name="SubmitT">
+</input>
 </font>
 </div>
 <br />
@@ -227,7 +217,7 @@ delineate(a,b);
   		<source src="{% static 'downloads/1.mp3' %}" type="audio/mpeg">
   		Your browser does not support the audio tag.
 		</audio> 
-		<div id="footnotediv"></div>
+		<div id="footnotediv" width="40"></div>
 
 	</center>
 	<!--

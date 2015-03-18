@@ -1,8 +1,33 @@
 {% load static %}
 <html>
 <head>
-
 <link rel="stylesheet" type="text/css" href="{% static 'neal_main/css.css' %}" />
+
+<script src="{% static 'downloads/audio.js' %}"></script>
+<script>
+// ensure the web page (DOM) has loaded
+// ensure the web page (DOM) has loaded
+function delineate(str1,str2,str3)
+{
+document.addEventListener("DOMContentLoaded", function () {
+// Create a popcorn instance by calling Popcorn("#id-of-my-video")
+var x = "#" + str3
+var pop = Popcorn(x);
+// add a footnote at 2 seconds, and remove it at 6 seconds
+pop.footnote({
+start: str1,
+end: str2,
+text: "hello",
+target: "footnotediv"
+});
+// play the video right away
+//pop.play();
+}, false);
+
+}
+
+</script>
+
 
 <title>NELS: Never Ending Learning of Sound
 </title>
@@ -25,12 +50,14 @@
 </div>
 <div id="topmiddle" style="float: left; margin-top: 20px; margin-left: 30px;">
 <font color = "#cccccc">
-    <h3 style="width: 40px;">
+    <center>
+	<h3 style="width: 40px;">
 
          Statistics:
 
     </h3>
-    <table style="font-size: 0.8em; margin-left: 20px; line-height: 1.4;">
+    </center>
+	<table style="font-size: 0.8em; margin-left: 20px; line-height: 1.4;">
         <tbody>
             <tr>
                 <td style="text-align:right">
@@ -48,7 +75,7 @@
             <tr>
                 <td style="text-align:right">
 
-                Segmentations: 1, 93, 000
+                &nbsp;&nbsp;&nbsp;Segmentations: 1, 93, 000
 
                 </td>
                 <td style="text-align:right">
@@ -174,7 +201,7 @@
         </tr>
     {% endfor %}
 	-->
-	{% if selected_flag %}
+	{% if object_selected_flag %}
 	<div class = "music">
 	<div class = "music_left">
 	<h3>Categories:</h3>
@@ -207,7 +234,7 @@
 	</ul>
 	</div>
 	<div class = "music_right">
-	Following are the sounds corresponding to objects of the category - {{ selected_category }}:
+	Sounds corresponding to category - {{ selected_category }} and object {{ object_selected_row.object_name }}:
 	<br />
 	<br /> 
 	<div class="pagination">
@@ -234,11 +261,117 @@
 		Object: {{item.object_name}}
 		<br />
 		<br />
-		{% load staticfiles %}
-	 	<audio controls>
-  		<source src="{% static 'downloads/1.mp3' %} " type="audio/mpeg">
+		
+		{% for key, value in cached_dict.items %} 
+  			{% ifequal key item.object_name %}
+				{% for key1, value1 in value.items %}
+					{% ifequal key1 item.category %}					
+						<li>Category = {{ key1 }} => Values: {{ value1 }}</li>
+						{% for item in value1 %}
+		    					<script>delineate({{ item.start }},{{ item.end }},{{ key }});</script>
+						{% endfor %}
+					{% endifequal %}
+				{% endfor %}
+			{% endifequal %}
+ 		{% endfor %}
+	    	<br />
+	    	<audio id = "{{ item.object_name }}" controls>
+  		<source src="{{STATIC_URL}}downloads/{{item.object_name}}.wav" type="audio/mpeg">
   		Your browser does not support the audio tag.
-		</audio> 
+		</audio>
+		<div id="footnotediv"></div>
+		<br />
+		<br />
+		<!--Start Time: {{item.start_time.time}} &nbsp;&nbsp;&nbsp;&nbsp;End Time: {{ item.end_time.time }} &nbsp;&nbsp;&nbsp;&nbsp;--> Source: {{ item.url }}
+		<br />
+		Date Learnt: {{ item.date_learned }}
+		<br />
+		<br />
+		</div>
+	{% endfor %}
+	</div>
+	</div>	
+	
+
+	{% elif selected_flag %}
+	<div class = "music">
+	<div class = "music_left">
+	<h3>Categories:</h3>
+	<br />
+	<br />
+	<ul>	
+	{% for item in category_results %}
+		{% if item.category == selected_category %}
+		<strong><u><li><a href = "{% url 'neal_main:objects' %}">{{ item.category }}</a></li></u></string>
+		<br />
+		<div class = "topic_display">		
+		<ol start = "1">
+			{% for result in object_results %}
+			{% if result.object_name == selected_object %}			
+			<strong><u><li><a href = {% url 'neal_main:objects_selected' item.category|slugify %}> {{ result.object_name }} </a></li></u></strong>
+			<br />
+			{% else %}
+			<li><a href = {% url 'neal_main:category_objects_selected' item.category|slugify result.object_name|slugify %}> {{ result.object_name }} </a></li>
+			<br />
+			{% endif %}
+			{% endfor %}	
+		</ol>
+		<br />	
+		</div>
+		{% else %}
+		<li><a href = "{% url 'neal_main:objects_selected' item.category|slugify %}">{{ item.category }}</a>
+		<br />
+		{% endif %}	
+	{% endfor %}
+	</ul>
+	</div>
+	<div class = "music_right">
+	Sounds corresponding to category - {{ selected_category }}:
+	<br />
+	<br /> 
+	<div class="pagination">
+    	<span class="step-links">
+        {% if query_results.has_previous %}
+            <strong><u><a href="?page={{ query_results.previous_page_number }}">Previous Page</a></u></strong>&nbsp;&nbsp;&nbsp;
+        {% endif %}
+
+        <span class="current">
+            Page {{ query_results.number }} of {{ query_results.paginator.num_pages }}. &nbsp;&nbsp;&nbsp;
+        </span>
+
+        {% if query_results.has_next %}
+            <strong><u><a href="?page={{ query_results.next_page_number }}"> Next Page</a></u></strong>
+        {% endif %}
+    	</span>
+	</div>
+	
+	<br />
+	<br />
+	
+	{% for item in query_results %}
+		<div class = "music_content">
+		Object: {{item.object_name}}
+		<br />
+		<br />
+		
+		{% for key, value in cached_dict.items %} 
+  			{% ifequal key item.object_name %}
+				{% for key1, value1 in value.items %}
+					{% ifequal key1 item.category %}					
+						<li>Category = {{ key1 }} => Values: {{ value1 }}</li>
+						{% for item in value1 %}
+		    					<script>delineate({{ item.start }},{{ item.end }},{{ key }});</script>
+						{% endfor %}
+					{% endifequal %}
+				{% endfor %}
+			{% endifequal %}
+ 		{% endfor %}
+	    	<br />
+	    	<audio id = "{{ item.object_name }}" controls>
+  		<source src="{{STATIC_URL}}downloads/{{item.object_name}}.wav" type="audio/mpeg">
+  		Your browser does not support the audio tag.
+		</audio>
+		<div id="footnotediv"></div>
 		<br />
 		<br />
 		<!--Start Time: {{item.start_time.time}} &nbsp;&nbsp;&nbsp;&nbsp;End Time: {{ item.end_time.time }} &nbsp;&nbsp;&nbsp;&nbsp;--> Source: {{ item.url }}
@@ -298,11 +431,23 @@
 		Object: {{item.object_name}}
 		<br />
 		<br />
-		{% load staticfiles %}
-	 	<audio controls>
-  		<source src="{% static 'downloads/1.mp3' %}" type="audio/mpeg">
+		
+		{% for key, value in cached_dict.items %} 
+  			{% ifequal key item.object_name %}
+				{% for key1, value1 in value.items %}
+					<li>Category = {{ key1 }} => Values: {{ value1 }}</li>
+					{% for item in value1 %}
+	    					<script>delineate({{ item.start }},{{ item.end }},{{ key }});</script>
+					{% endfor %}
+				{% endfor %}
+			{% endifequal %}
+ 		{% endfor %}
+	    	<br />
+	 	<audio id = "{{ item.object_name }}" controls>
+  		<source src="{{STATIC_URL}}downloads/{{item.object_name}}.wav" type="audio/mpeg">
   		Your browser does not support the audio tag.
 		</audio> 
+		<div id="footnotediv"></div>
 		<br />
 		<br />
 		<!--Start Time: {{item.start_time.time}} &nbsp;&nbsp;&nbsp;&nbsp;End Time: {{ item.end_time.time }} &nbsp;&nbsp;&nbsp;&nbsp;--> Source: {{ item.url }}
