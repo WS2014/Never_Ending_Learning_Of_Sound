@@ -30,4 +30,7 @@ read category
 ./svm-train -s 0 -b 1 $SVM_input/svm_input_$category.train $SVM_input/svm_input_$category.train.model
 
 ./svm-predict -b 1 $SVM_input_test/svm_input_$category.test $SVM_input/svm_input_$category.train.model $SVM_output/svm_output_$category.txt
- 
+File="$SVM_output/svm_output_$category.txt"
+echo $File
+tail -n +2 "$File" | tee temp.txt
+mv temp.txt $File
