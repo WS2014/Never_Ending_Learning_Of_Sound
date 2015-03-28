@@ -25,22 +25,24 @@
 </div>
 <div id="topmiddle" style="float: left; margin-top: 20px; margin-left: 30px;">
 <font color = "#cccccc">
-    <h3 style="width: 40px;">
+    <center>
+	<h3 style="width: 40px;">
 
-        Statistics:
+         Statistics:
 
     </h3>
-    <table style="font-size: 0.8em; margin-left: 20px; line-height: 1.4;">
+    </center>
+	<table style="font-size: 0.8em; margin-left: 20px; line-height: 1.4;">
         <tbody>
             <tr>
                 <td style="text-align:right">
 
-                Concepts: 
+                Concepts: 7
 
                 </td>
 		<td style="text-align:right">
 
-                Audio Clips:   
+                Audio Clips: 850
 
                 </td>
                 
@@ -48,12 +50,13 @@
             <tr>
                 <td style="text-align:right">
 
-                Segmentations:    
+                &nbsp;&nbsp;&nbsp;Segmentations: 1, 93, 000
 
                 </td>
                 <td style="text-align:right">
 
-                Audio Relationships: 
+                &nbsp;&nbsp;&nbsp;Audio Relationships: to be mapped
+
 
                 </td>
             </tr>
@@ -61,6 +64,7 @@
     </table>
 </font>
 </div>
+
 <div id="topright">
 <font color = "#cccccc">
 <input id="category" value="Search Here"></input>
@@ -128,29 +132,51 @@
 	<h2><a href = "{% url 'neal_main:neal_index' %}">Home</a></h2>
 	</div>
 	<div class = "tab">
-	<h2><a href = "{% url 'neal_main:objects' %}">Objects</a></h2>
+	<h2><a href = "{% url 'neal_main:objects' %}	">Objects</a></h2>
 	</div>
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:segments' %}">Segments</a></h2>
 	</div>
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:crawler' %}">Crawler</a></h2>
-	</div>	
+	</div>
+	
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:downloads' %}">Downloads</a></h2>
 	</div>
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:about' %}">About</a></h2>
 	</div>
-	
-	<div style="float:bottom;">
+	<div style="float:left;">
 	<br />
 	<br />
+	<h3>GitHub Repository and Detailed Description</h3>
+	<br />
+	The detailed step by step description of the approach followed for the NELS Web Framework is available in the <a href = "https://github.com/WS2014/Never_Ending_Learning_Of_Sound/blob/master/README.md" style="color:red;">README.md</a>. Please visit our <a href = "https://github.com/WS2014/Never_Ending_Learning_Of_Sound/" style="color:red;">Github Repository</a> for the source code for the project. We appreciate any suggestions.</html>
 	<br />
 	<br />
-	Downloads
-	</div>
-</html>
+	<hr>
+	<br />
+	<h3>Project Blog</h3>
+	<br />
+	This is a link to our <a href = "http://cmuwinterschool.blogspot.in/2014/12/project-nels-never-ending-learning-of.html" style="color:red;">Blog</a>. Stay tuned for updates.
+	<br />
+	<br />
+	<hr>
+	<br />
+	<h3>Tools Used</h3>
+	<br />
+	1. OpenSmile
+	<br />
+2. Octave<br />
+3. LibSVM (Linear, RBF and Precomputed Kernel)<br />
+4. Python<br />
+5. Django Web Framework<br />
+6. Front End Technologies: HTML, CSS, JavaScript, jQuery.<br />
+7. PortAudio<br />
+<br /><br />
+We will be shifting all our codebase to a single language i.e Python and will do away with octave so that the backend processing is faster and the response time for user queries reduces.
+<br />
 </frame>
 </frameset>
 </div>

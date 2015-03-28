@@ -5,8 +5,8 @@ import sys
 from scipy.cluster.vq import vq	
 from numpy import array
 
-def assignment(accumulated_folder_path,cluster_folder_path):
-	with open(accumulated_folder_path + "/normalized_text.txt", "r") as userfile:
+def assignment(accumulated_file_path,cluster_folder_path):
+	with open(accumulated_file_path, "r") as userfile:
 			lst2 = []	
 			for line in userfile:
 				data = re.split(' |\n', line)
@@ -18,7 +18,7 @@ def assignment(accumulated_folder_path,cluster_folder_path):
 				
 			userfile.close()
 
-
+	print len(lst2)
 	with open(cluster_folder_path + "/normalized_text.txt.cluster_centres", "r") as cluster_file:
 			lst3 = []	
 			for line in cluster_file:
@@ -38,18 +38,18 @@ def assignment(accumulated_folder_path,cluster_folder_path):
 	features = array(lst2)
 
 	[C,D] = vq(features,code_book)
-	#print C
-	#print D
+	print C
+	print D
 	return C
 	print len(C)
 
 if(len(sys.argv)!=4):
-	print "USAGE: python assignment_test1.py <filepath_accumulated_folder> <cluster_folder_path> <output_directory>"
+	print "USAGE: python assignment_test1.py <accumulated_file_path> <cluster_folder_path> <output_file_with_path>"
 else:
-	accumulated_folder_path = sys.argv[1]
+	accumulated_file_path = sys.argv[1]
 	cluster_folder_path = sys.argv[2]
-	output_directory = sys.argv[3]
+	output_file_with_path = sys.argv[3]
 
-	lst4 = assignment(accumulated_folder_path, cluster_folder_path)
-	with open(output_directory + "/assignment_test.txt","w") as userfile3:
+	lst4 = assignment(accumulated_file_path, cluster_folder_path)
+	with open(output_file_with_path,"w") as userfile3:
 		userfile3.writelines(["%s\n" % item for item in lst4])

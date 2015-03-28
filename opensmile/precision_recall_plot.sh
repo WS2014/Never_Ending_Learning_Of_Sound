@@ -19,18 +19,16 @@ text_histogram_folder_norm="$current_dir/text_histogram_folder_norm"
 SVM_input="$current_dir/SVM_input"
 
 SVM_output="$current_dir/SVM_output"
-mkdir -p $SVM_output
 
-libSVM_path="$current_dir/libsvm-3.20"
-cd $libSVM_path
-
-echo "Enter the category for which you want to train the SVM - The name of category needs to be entered as a single word in lower case"
+echo "Enter the category for which you want to generate the precison and recall curve"
 read category
 
-./svm-train -s 0 -b 1 $SVM_input/svm_input_$category.train $SVM_input/svm_input_$category.train.model
+INP_FILE=SVM_input_test/svm_input_$category.txt
+OUT_FILE=SVM_output/svm_output_$category.txt
 
-./svm-predict -b 1 $SVM_input_test/svm_input_$category.test $SVM_input/svm_input_$category.train.model $SVM_output/svm_output_$category.txt
-File="$SVM_output/svm_output_$category.txt"
-echo $File
-tail -n +2 "$File" | tee temp.txt
-mv temp.txt $File
+echo "$INP_FILE $OUT_FILE"
+
+octave -qf --eval "addpath('$current_dir'); precision_recall_plot('$INP_FILE','$OUT_FILE')"
+
+
+sleep 20

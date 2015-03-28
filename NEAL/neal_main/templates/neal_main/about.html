@@ -8,7 +8,7 @@
 </title>
 
 </head>
-<body >
+<body link = "red">
 <div id = "title">
 	<h1 class="logo">
 		<a href="" target = "_parent">
@@ -25,22 +25,24 @@
 </div>
 <div id="topmiddle" style="float: left; margin-top: 20px; margin-left: 30px;">
 <font color = "#cccccc">
-    <h3 style="width: 40px;">
+    <center>
+	<h3 style="width: 40px;">
 
-        Statistics:
+         Statistics:
 
     </h3>
-    <table style="font-size: 0.8em; margin-left: 20px; line-height: 1.4;">
+    </center>
+	<table style="font-size: 0.8em; margin-left: 20px; line-height: 1.4;">
         <tbody>
             <tr>
                 <td style="text-align:right">
 
-                Concepts: 
+                Concepts: 7
 
                 </td>
 		<td style="text-align:right">
 
-                Audio Clips:   
+                Audio Clips: 850
 
                 </td>
                 
@@ -48,12 +50,13 @@
             <tr>
                 <td style="text-align:right">
 
-                Segmentations:    
+                &nbsp;&nbsp;&nbsp;Segmentations: 1, 93, 000
 
                 </td>
                 <td style="text-align:right">
 
-                Audio Relationships: 
+                &nbsp;&nbsp;&nbsp;Audio Relationships: to be mapped
+
 
                 </td>
             </tr>
@@ -61,6 +64,7 @@
     </table>
 </font>
 </div>
+
 <div id="topright">
 <font color = "#cccccc">
 <input id="category" value="Search Here"></input>
@@ -119,43 +123,94 @@
 </div>
 -->
 
+
+
 <div class="content">
 <frameset framespacing="2" frameborder="no" cols="250,*">
 
     <frame name="neal_category">
     <html>
-<div class = "tab">
+	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:neal_index' %}">Home</a></h2>
 	</div>
 	<div class = "tab">
-	<h2><a href = "{% url 'neal_main:objects' %}">Objects</a></h2>
+	<h2><a href = "{% url 'neal_main:objects' %}	">Objects</a></h2>
 	</div>
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:segments' %}">Segments</a></h2>
 	</div>
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:crawler' %}">Crawler</a></h2>
-	</div>	
+	</div>
+	
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:downloads' %}">Downloads</a></h2>
 	</div>
 	<div class = "tab">
 	<h2><a href = "{% url 'neal_main:about' %}">About</a></h2>
 	</div>
+	<div style="float:left;">
+	<br />
+	<br />
+	<h3>Project NELS: The Vision</h3>
+	<br />
+	Most of the robotic machines in today's time take decisions based on visual images but they seldom use sounds as sensory inputs for taking actions. Imaging a scenario where your machine could understand different sounds like you do. Imagine a machine that could sense a knock on your door, someone breaking into your house and take decisions by sensing different sounds in the environment. This could help in efficient decision making and make machine more intelligent. But, how does one make the machine understand millions of sounds existing in the universe?
+	<br />
+	<br />
+The main motivation behind this long term project is to make the machine continuously learn all the sounds that exist in the universe. However, nature has its own grammar in the sense that the sounds follow certain rules that humans are able to understand intuitively, but this information is unusable by machines. The NELS Team is developing an artificial intelligent system that continually crawls the web for sound samples and automatically learn their meanings, associations and semantics with minimal human intervention.
+  	<br />
+	<br />
 	
-	<div style="float:bottom;">
+<a href = "http://rtw.ml.cmu.edu/rtw/" style="color:red;">The Never Ending Language Learner (NELL)</a> and <a href = "http://www.neil-kb.com/" style="color:red;">Never Ending Image Learner (NEIL)</a> are similar projects that aim to make the machines develop the capability to read and understand images respectively. These project have been very successful. The Never Ending Learning of Sound (NELS) is a similar effort with the aim to make machines develop the capability to hear. 
 	<br />
 	<br />
+	<hr>
+<br />
+<h3>Project NELS: The Approach</h3>
 	<br />
-	About
+	We have currently divided the project into 3 modules:
+	<br />
+	<br />
+<b><u>Module 1: Web Crawler</u></b> - <br />The web crawler continuously crawls the web to collect sound samples and other information about the sound sample. Currently, the crawler is implemented for youtube.com, but we are in the process of having a generic crawler in place. A major problem that remains to be dealt with is handling near duplicate sound samples. We are planning to implement LSH Techniques for the same.
+	<br />
+	<br />
+<b><u>Module 2: Artificial Intelligent System</u></b> - <br />We have trained classifiers with training data obtained from findsounds sound database. These classifiers are used to classify the newly encountered sound sample and re-train the classifier. The Re-Training is not implemented as of now, but it forms an essential part of the project. We are currently extracting the Mel Frequency Coefficients from the sound samples and applying Kmeans Algorithm to obtain the bag of words. The current binary SVM Classifiers (Chi-Square Kernel) are trained using these bag of words.
+	<br />
+	<br />
+<b><u>Module 3: Web Interface</u></b> - <br />The backend of the website is based in Python-Django. The web interface allows the users on the NELS framework visualize what relationships and attributes are currently formulated by NELS. The web interface also forms the basis for manual human evaluation of the relationships learnt by NELS. Our aim is to continuously reduce the human intervention required by NELS.
+	<br />
+	<br />
+	<hr>
+<br />
+<h3>Project NELS: Future Plans</h3>
+<br />
+In order to improve upon the efficiency of the model, we have though of undergoing the following:
+<br />
+<br />
+1. Try other classification methods (such as different kernels in LibSVM) and identify which provides best precision and recall. Our aim is to have as high precision as possible.
+<br />
+2. Identify other features from the sound samples (apart from MFCC Coefficients) that could help in having more information about sound and lead to better accuracy of classification.
+<br />
+3. Incremental clustering to identify new classes.
+<br />
+4. Implement Locality Sensitive Hashing (LSH) Technique that would help to identify near duplicates and hence significantly improve the efficiency of the crawler.
+	<br />
+	<br />
+	<hr>
+	<br />
+<h3>Project NELS: Project Mentors</h3>
+<br />
+We would like to thank Prof Dr. Bhiksha Raj, Prof Dr. Rita Singh and Pulkit Agrawal for their constant guidance and overwhelming support. Their wisdom, clarity of thought and persistent encouragement motivated us to bring this project to its present state. Working with them has been a great learning experience.
+<br /><br />
 
-	About
-
-    Humans identify sounds, able to classify them and draw relevancies. But how does a computer knows what a dog's bark sounds like? How does it knows that the incoming sound sounds like a bird? Can a computer learn all these just by browsing and classifying sounds on the Internet? NEAL believes it's possible!
-
-    NELS (Never Ending Learning of Sound) is a computer program that runs 24x7 days to automatically extract aural knowledge from Internet data. It runs through the input audio files over web and tries to identify which sounds occur and when in the audio. It is an effort to build the world’s largest aural knowledge base with minimum human labeling effort – one that would be useful in several researches. 
-
-	</div>
+1. Prof Dr. Bhiksha Raj, School of Computer Science, Carnegie Mellon University. <a href = "http://mlsp.cs.cmu.edu/people/bhiksha/" style="color:red;">Link to Official Page.</a>
+<br /><br />
+2. Prof Dr. Rita Singh, School of Computer Science, Carnegie Mellon University. <a href = "http://mlsp.cs.cmu.edu/people/rsingh/index.php" style="color:red;">Link to Official Page.</a>
+<br /><br />
+3. Pulkit Agrawal, Graduate Student, Department of Computer Science, University of California, Berkeley. <a href = "http://www.eecs.berkeley.edu/~pulkitag/" style="color:red;">Link to Official Page.</a>
+<br /><br />
+<hr>
+</div>
 </html>
 </frame>
 </frameset>
